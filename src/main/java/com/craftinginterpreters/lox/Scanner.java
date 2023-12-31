@@ -64,6 +64,8 @@ class Scanner {
                 if (match('/')) {
                     // A comment goes until the end of the line.
                     while (peek() != '\n' && !isAtEnd()) advance();
+                } else if (match('*')) {
+                    multilinecomment();
                 } else if (isAlpha(c)) {
                     identifier();}
                 else {
@@ -95,9 +97,6 @@ class Scanner {
         return source.charAt(current++);
     }
 
-
-
-    // todo remove isAtEnd from here and invert conditions while calling it?
     private char peek() {
         if (isAtEnd()) return '\0';
         return source.charAt(current);
@@ -151,6 +150,24 @@ class Scanner {
         // Trim the surrounding quotes.
         String value = source.substring(start + 1, current - 1);
         addToken(STRING, value);
+    }
+
+    private void multilinecomment() {
+        while (peek() != '*' && peekNext() != '/' && !isAtEnd()) {
+            if (peek() == '\n') line++;
+            advance();
+        }
+
+        if (isAtEnd()) {
+            Lox.error(line, "Unterminated multi-line comment.");
+            return;
+        }
+
+        // consume the closing '*/'
+        advance();
+        advance();
+
+        // no token emitted for comments
     }
 
     private void number() {
