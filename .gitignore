@@ -1,0 +1,33 @@
+.gradle
+**/build/
+!src/**/build/
+
+# Package files
+*.class
+*.jar
+*.war
+*.ear
+
+# IntelliJ config
+.idea/*
+
+# MacOS
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Avoid ignore Gradle wrappper properties
+!gradle-wrapper.properties
+
+# Cache of project
+.gradletasknamecache
+
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
