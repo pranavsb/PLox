@@ -22,8 +22,8 @@ jar {
     manifest {
         attributes(
                 'Class-Path': configurations,
-//                'Main-Class': 'com.craftinginterpreters.lox.Lox'
-                'Main-Class': 'com.craftinginterpreters.tool.GenerateAst'
+                'Main-Class': 'com.craftinginterpreters.lox.Lox'
+//                'Main-Class': 'com.craftinginterpreters.tool.GenerateAst'
         )
     }
 }
